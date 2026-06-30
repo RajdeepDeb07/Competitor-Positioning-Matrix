@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>DCPM Pro | Deb's Competitive Positioning Matrix</title>
+<style>
+:root{
+  --bg:#f4f6fa;--card:#fff;--ink:#111827;--muted:#667085;--line:#d9e0ea;--blue:#163b8f;--blue2:#0b255f;
+  --soft:#eef4ff;--green:#067647;--red:#b42318;--amber:#b54708;--purple:#6941c6;--slate:#344054;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,Arial,Helvetica,sans-serif;background:var(--bg);color:var(--ink)}
+header{background:linear-gradient(135deg,#0b1220,#163b8f 65%,#2856b8);color:#fff;padding:30px 24px}
+.header-inner{max-width:1540px;margin:auto;display:flex;justify-content:space-between;gap:24px;align-items:center}
+h1{margin:0;font-size:30px;letter-spacing:-.4px}
+.subtitle{margin:8px 0 0;color:#dce8ff;font-size:14px;max-width:850px}
+.badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);padding:9px 12px;border-radius:999px;font-size:12px;font-weight:700;white-space:nowrap}
+main{max-width:1540px;margin:22px auto 44px;padding:0 18px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:18px;box-shadow:0 8px 26px rgba(16,24,40,.06)}
+.panel-title{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-bottom:16px}
+.panel-title h2,.panel-title h3{margin:0}
+.grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+label{display:block;font-size:12px;color:var(--muted);font-weight:800;margin-bottom:6px;text-transform:uppercase;letter-spacing:.04em}
+input,select,textarea{width:100%;padding:10px 11px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);font-size:14px}
+textarea{resize:vertical;min-height:104px;line-height:1.45}
+button{border:none;border-radius:10px;padding:11px 15px;font-weight:800;cursor:pointer;background:var(--blue);color:#fff;margin:12px 8px 0 0}
+button:hover{background:var(--blue2)}
+button.secondary{background:#344054}
+button.light{background:#eef2f7;color:#101828}
+button.warn{background:#b54708}
+button:disabled{opacity:.6;cursor:not-allowed}
+.note{background:var(--soft);border-left:4px solid #2f6fed;border-radius:10px;padding:13px 15px;color:#173b8f;font-size:14px;margin-bottom:16px}
+.status{display:none;background:#ecfdf3;color:#067647;padding:12px 14px;border-radius:10px;margin-top:12px;font-size:14px;font-weight:700}
+.error{display:none;background:#fef3f2;color:#b42318;padding:12px 14px;border-radius:10px;margin-top:12px;font-size:14px;font-weight:700}
+.kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+.kpi{background:linear-gradient(180deg,#fff,#f8fbff);border:1px solid var(--line);border-radius:14px;padding:15px}
+.kpi .num{font-size:26px;font-weight:900;letter-spacing:-.4px}
+.kpi .label{font-size:12px;color:var(--muted);font-weight:800;margin-top:4px;text-transform:uppercase}
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px}
+table{width:100%;border-collapse:collapse;min-width:1480px;background:#fff}
+th{background:#111827;color:#fff;text-align:left;padding:12px;font-size:12px;vertical-align:top;position:sticky;top:0;z-index:1}
+td{border-top:1px solid var(--line);border-right:1px solid var(--line);padding:10px;vertical-align:top;font-size:13px}
+td:last-child{border-right:none}
+td textarea{border:none;padding:0;min-height:126px;font-size:13px;background:transparent}
+.pill{display:inline-block;border-radius:999px;padding:5px 8px;font-size:12px;font-weight:800;margin-bottom:6px}
+.pill-high{background:#fef3f2;color:#b42318}
+.pill-mod{background:#fffaeb;color:#b54708}
+.pill-low{background:#ecfdf3;color:#067647}
+.pill-blue{background:#eef4ff;color:#163b8f}
+.small{font-size:12px;color:var(--muted);line-height:1.4}
+.two-col{display:grid;grid-template-columns:1.2fr .8fr;gap:16px}
+ul.clean{margin:8px 0 0;padding-left:18px}
+.footer{color:var(--muted);font-size:12px;text-align:center;margin-top:22px}
+@media(max-width:1180px){.grid,.kpis{grid-template-columns:repeat(2,1fr)}.two-col{grid-template-columns:1fr}.header-inner{display:block}.badge{margin-top:14px}}
+@media(max-width:680px){.grid,.kpis{grid-template-columns:1fr}h1{font-size:23px}header{padding:24px 18px}}
+@media print{header,.input-panel,.actions,.footer{display:none}.panel{box-shadow:none;border:none}body{background:#fff}table{min-width:1300px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <div>
+      <h1>DCPM Pro</h1>
+      <p class="subtitle">Deb's Competitive Positioning Matrix — AI-assisted competitive intelligence platform for converting competitor events into market opportunity and firm positioning insight.</p>
+    </div>
+    <div class="badge">Executive CI Dashboard</div>
+  </div>
+</header>
+
+<main>
+  <section class="panel input-panel">
+    <div class="panel-title">
+      <h2>Analysis Setup</h2>
+      <span class="small">Secure OpenAI call via Netlify Function</span>
+    </div>
+
+    <div class="grid">
+      <div><label>Competitor</label><input id="competitor" placeholder="e.g., Nestlé"></div>
+      <div><label>Focal Company</label><input id="focalCompany" placeholder="e.g., General Mills"></div>
+      <div><label>Time Period</label><select id="period"><option>FY2026</option><option selected>FY2025</option><option>FY2024</option><option>FY2023</option><option>Q1</option><option>Q2</option><option>Q3</option><option>Q4</option></select></div>
+      <div><label>Month</label><select id="month"><option selected>All Months</option><option>January</option><option>February</option><option>March</option><option>April</option><option>May</option><option>June</option><option>July</option><option>August</option><option>September</option><option>October</option><option>November</option><option>December</option></select></div>
+      <div><label>Year</label><select id="year"><option selected>2026</option><option>2025</option><option>2024</option><option>2023</option><option>2022</option><option>2021</option></select></div>
+      <div><label>Geography</label><select id="geo">
+        <optgroup label="Regions"><option>Global</option><option selected>APAC</option><option>EMEA</option><option>Americas</option><option>LATAM</option></optgroup>
+        <optgroup label="Top Countries"><option>United States</option><option>Canada</option><option>Mexico</option><option>Brazil</option><option>United Kingdom</option><option>Germany</option><option>France</option><option>Italy</option><option>Spain</option><option>Netherlands</option><option>India</option><option>China</option><option>Japan</option><option>South Korea</option><option>Australia</option><option>Singapore</option><option>Indonesia</option><option>Thailand</option><option>Malaysia</option><option>Vietnam</option><option>Philippines</option><option>UAE</option><option>Saudi Arabia</option><option>South Africa</option></optgroup>
+      </select></div>
+    </div>
+
+    <div class="actions">
+      <button id="generateBtn" onclick="generateDCPM()">Generate DCPM</button>
+      <button class="secondary" onclick="downloadCSV()">Export CSV</button>
+      <button class="secondary" onclick="downloadJSON()">Export JSON</button>
+      <button class="light" onclick="copyTable()">Copy Table</button>
+      <button class="light" onclick="saveProject()">Save Project</button>
+      <button class="light" onclick="loadProject()">Load Saved</button>
+      <button class="warn" onclick="resetAll()">Reset</button>
+      <button class="light" onclick="window.print()">Print / PDF</button>
+    </div>
+
+    <div id="statusBox" class="status">Generating executive DCPM...</div>
+    <div id="errorBox" class="error"></div>
+    <p class="small">Keep your OpenAI key in Netlify Environment Variables only. Do not place API keys in browser code.</p>
+  </section>
+
+  <section class="panel">
+    <div class="note"><b>DCPM Principle:</b> Competitor actions are evidence that a competitor identified an existing or emerging market opportunity and decided to invest in it. The framework evaluates the opportunity signal and the focal company’s current positioning.</div>
+    <div class="panel-title"><h2 id="matrixTitle">DCPM Executive Matrix</h2><span id="generatedAt" class="small"></span></div>
+    <div class="kpis">
+      <div class="kpi"><div id="kpiEvents" class="num">0</div><div class="label">Material Events</div></div>
+      <div class="kpi"><div id="kpiDirect" class="num">0</div><div class="label">Direct Competition</div></div>
+      <div class="kpi"><div id="kpiGaps" class="num">0</div><div class="label">Competitive Gaps</div></div>
+      <div class="kpi"><div id="kpiEmerging" class="num">0</div><div class="label">Emerging Opportunities</div></div>
+      <div class="kpi"><div id="kpiHigh" class="num">0</div><div class="label">High Priority</div></div>
+      <div class="kpi"><div id="kpiConfidence" class="num">—</div><div class="label">Avg Confidence</div></div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="table-wrap">
+      <table id="dcpmTable">
+        <thead>
+          <tr>
+            <th>DCPM Pillar</th>
+            <th>Specific Competitor Event</th>
+            <th>Event Materiality</th>
+            <th>Market Opportunity<br>(TAM Perspective)</th>
+            <th>Competitive Impact</th>
+            <th>Firm Competitive Positioning</th>
+            <th>Strategic Priority</th>
+            <th>Confidence</th>
+            <th>Evidence Basis</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="two-col">
+      <div>
+        <h3>Executive Summary</h3>
+        <textarea id="execSummary" placeholder="AI-generated summary appears here."></textarea>
+      </div>
+      <div>
+        <h3>Source Log</h3>
+        <ul id="sourceLog" class="clean small"></ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer">DCPM Pro | Deb's Competitive Positioning Matrix | Competitive Intelligence Operating Framework</div>
+</main>
+
+<script>
+const pillars=["Product Launch & Enhancement","Client Wins","M&A & Partnerships","Expansion & Innovation","Corporate Awards","Leadership Change"];
+let currentData={rows:[],sources:[],executiveSummary:""};
+
+function seedRows(){
+  currentData.rows=pillars.map(p=>({
+    pillar:p,event:"No material strategic event identified.",materiality:"Low",
+    marketOpportunity:["• No confirmed market opportunity signal identified for this pillar in the selected scope.","• Public-source evidence is insufficient to infer a material TAM driver without speculation."],
+    competitiveImpact:"Low Strategic Relevance",
+    firmPositioning:["• No immediate positioning implication for the focal company can be established from verified public events.","• Continue monitoring only if future source-backed events indicate category, channel, capability, or geographic movement."],
+    strategicPriority:"Low",confidence:"Medium",evidenceBasis:"No material source-backed event identified."
+  }));
+  renderAll();
+}
+
+function escapeHtml(s){return String(s??"").replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));}
+function bulletText(arr){return Array.isArray(arr)?arr.join("\n"):String(arr||"");}
+
+function renderAll(){
+  const tbody=document.querySelector("#dcpmTable tbody"); tbody.innerHTML="";
+  currentData.rows.forEach((r,i)=>{
+    const tr=document.createElement("tr");
+    tr.innerHTML=`
+      <td><b>${escapeHtml(r.pillar)}</b></td>
+      <td><textarea onchange="syncCell(${i},'event',this.value)">${escapeHtml(r.event)}</textarea></td>
+      <td><textarea onchange="syncCell(${i},'materiality',this.value)">${escapeHtml(r.materiality)}</textarea></td>
+      <td><textarea onchange="syncBullets(${i},'marketOpportunity',this.value)">${escapeHtml(bulletText(r.marketOpportunity))}</textarea></td>
+      <td><textarea onchange="syncCell(${i},'competitiveImpact',this.value)">${escapeHtml(r.competitiveImpact)}</textarea></td>
+      <td><textarea onchange="syncBullets(${i},'firmPositioning',this.value)">${escapeHtml(bulletText(r.firmPositioning))}</textarea></td>
+      <td><textarea onchange="syncCell(${i},'strategicPriority',this.value)">${escapeHtml(r.strategicPriority)}</textarea></td>
+      <td><textarea onchange="syncCell(${i},'confidence',this.value)">${escapeHtml(r.confidence)}</textarea></td>
+      <td><textarea onchange="syncCell(${i},'evidenceBasis',this.value)">${escapeHtml(r.evidenceBasis)}</textarea></td>`;
+    tbody.appendChild(tr);
+  });
+  document.getElementById("execSummary").value=currentData.executiveSummary||"";
+  renderSources();
+  updateKPIs();
+}
+
+function renderSources(){
+  const ul=document.getElementById("sourceLog"); ul.innerHTML="";
+  (currentData.sources||[]).forEach(s=>{const li=document.createElement("li"); li.textContent=s; ul.appendChild(li);});
+}
+function syncCell(i,k,v){currentData.rows[i][k]=v; updateKPIs();}
+function syncBullets(i,k,v){currentData.rows[i][k]=v.split("\n").filter(Boolean); updateKPIs();}
+
+function getPayload(){
+  return {
+    competitor:competitor.value.trim(),focalCompany:focalCompany.value.trim(),period:period.value,month:month.value,year:year.value,geography:geo.value
+  };
+}
+function setTitle(p){
+  matrixTitle.innerText=`${p.competitor||"<Competitor>"} vs ${p.focalCompany||"<Focal Company>"} | ${p.period} | ${p.month} ${p.year} | ${p.geography}`;
+}
+
+async function generateDCPM(){
+  const p=getPayload(); setTitle(p); hideError();
+  if(!p.competitor||!p.focalCompany){showError("Please enter both Competitor and Focal Company.");return;}
+  generateBtn.disabled=true; statusBox.style.display="block"; statusBox.textContent="Generating executive DCPM...";
+  try{
+    const res=await fetch("/.netlify/functions/generate-dcpm",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(p)});
+    const data=await res.json();
+    if(!res.ok) throw new Error(data.error||"Generation failed.");
+    currentData=data;
+    if(!currentData.rows) currentData.rows=[];
+    generatedAt.textContent="Generated: "+new Date().toLocaleString();
+    renderAll();
+    statusBox.textContent="DCPM generated successfully.";
+  }catch(e){showError(e.message);}
+  finally{generateBtn.disabled=false; setTimeout(()=>statusBox.style.display="none",2500);}
+}
+
+function updateKPIs(){
+  const rows=currentData.rows||[];
+  const material=rows.filter(r=>!String(r.event||"").toLowerCase().includes("no material")).length;
+  const direct=rows.filter(r=>/direct competition/i.test(r.competitiveImpact||"")).length;
+  const gaps=rows.filter(r=>/competitive gap/i.test(r.competitiveImpact||"")).length;
+  const emerging=rows.filter(r=>/emerging opportunity/i.test(r.competitiveImpact||"")).length;
+  const high=rows.filter(r=>/high/i.test(r.strategicPriority||"")).length;
+  const score={Low:1,Medium:2,High:3};
+  const avg=rows.length?rows.reduce((a,r)=>a+(score[String(r.confidence||"").trim()]||2),0)/rows.length:0;
+  kpiEvents.innerText=material; kpiDirect.innerText=direct; kpiGaps.innerText=gaps; kpiEmerging.innerText=emerging; kpiHigh.innerText=high;
+  kpiConfidence.innerText=avg>=2.5?"High":avg>=1.6?"Medium":"Low";
+}
+
+function flattenRows(){return (currentData.rows||[]).map(r=>[
+  r.pillar,r.event,r.materiality,bulletText(r.marketOpportunity),r.competitiveImpact,bulletText(r.firmPositioning),r.strategicPriority,r.confidence,r.evidenceBasis
+]);}
+function downloadCSV(){
+  const headers=["DCPM Pillar","Specific Competitor Event","Event Materiality","Market Opportunity","Competitive Impact","Firm Competitive Positioning","Strategic Priority","Confidence","Evidence Basis"];
+  const csv=[headers,...flattenRows()].map(row=>row.map(c=>`"${String(c||"").replace(/"/g,'""')}"`).join(",")).join("\n");
+  downloadBlob(csv,"DCPM_Pro_Matrix.csv","text/csv");
+}
+function downloadJSON(){downloadBlob(JSON.stringify(currentData,null,2),"DCPM_Pro_Project.json","application/json");}
+function downloadBlob(content,name,type){const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([content],{type}));a.download=name;a.click();}
+function copyTable(){
+  const headers=["DCPM Pillar","Specific Competitor Event","Event Materiality","Market Opportunity","Competitive Impact","Firm Competitive Positioning","Strategic Priority","Confidence","Evidence Basis"];
+  navigator.clipboard.writeText([headers,...flattenRows()].map(r=>r.join("\t")).join("\n")); alert("Copied to clipboard.");
+}
+function saveProject(){
+  currentData.executiveSummary=execSummary.value;
+  localStorage.setItem("dcpm_pro_project",JSON.stringify({inputs:getPayload(),data:currentData,generatedAt:generatedAt.textContent}));
+  alert("Project saved in this browser.");
+}
+function loadProject(){
+  const raw=localStorage.getItem("dcpm_pro_project"); if(!raw){alert("No saved project found.");return;}
+  const obj=JSON.parse(raw); const p=obj.inputs||{};
+  competitor.value=p.competitor||""; focalCompany.value=p.focalCompany||""; period.value=p.period||"FY2025"; month.value=p.month||"All Months"; year.value=p.year||"2026"; geo.value=p.geography||"APAC";
+  currentData=obj.data||{}; generatedAt.textContent=obj.generatedAt||""; setTitle(getPayload()); renderAll();
+}
+function resetAll(){if(confirm("Reset the DCPM workspace?")){execSummary.value=""; generatedAt.textContent=""; currentData={rows:[],sources:[],executiveSummary:""}; seedRows();}}
+function showError(msg){errorBox.innerText=msg;errorBox.style.display="block";}
+function hideError(){errorBox.style.display="none";errorBox.innerText="";}
+seedRows();
+</script>
+</body>
+</html>
